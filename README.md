@@ -1,7 +1,7 @@
 # Module Federation Demo
 
 This is a demo of Module Federation in Webpack 5 
-with React and Material UI.
+with React, Material UI and TypeScript.
 Both apps act as hosts and remotes, 
 where each app consumes a component exported 
 from the other.
