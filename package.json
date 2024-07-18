@@ -1,21 +1,24 @@
 {
   "name": "mf-demo",
   "version": "0.0.1",
-  "description": "Simple demo showcasing module federation with react and webpack 5",
+  "description": "Simple demo showcasing module federation with react, vite and webpack 5",
   "main": "index.js",
   "author": "redjov <redjov@officernd.com>",
   "license": "MIT",
   "scripts": {
-    "install": "yarn --cwd ./flex && yarn --cwd ./hybrid",
+    "install": "yarn --cwd ./flex && yarn --cwd ./hybrid && yarn --cwd ./platform",
     "start:flex": "yarn --cwd ./flex start",
     "start:hybrid": "yarn --cwd ./hybrid start",
-    "start": "concurrently --kill-others \"yarn start:flex\" \"yarn start:hybrid\"",
+    "start:platform": "yarn --cwd ./platform dev",
+    "start": "concurrently --kill-others \"yarn start:flex\" \"yarn start:hybrid\" \"yarn start:platform\"",
     "build:flex": "yarn --cwd ./flex build",
     "build:hybrid": "yarn --cwd ./hybrid build",
-    "build": "concurrently --kill-others \"yarn build:flex\" \"yarn build:hybrid\"",
+    "build:platform": "yarn --cwd ./platform build",
+    "build": "concurrently --kill-others \"yarn build:flex\" \"yarn build:hybrid\" \"yarn build:platform\"",
     "serve:flex": "yarn --cwd ./flex serve",
     "serve:hybrid": "yarn --cwd ./hybrid serve",
-    "serve": "concurrently --kill-others \"yarn serve:flex\" \"yarn serve:hybrid\""
+    "serve:platform": "yarn --cwd ./platform preview",
+    "serve": "concurrently --kill-others \"yarn serve:flex\" \"yarn serve:hybrid\" \"yarn serve:platform\""
   },
   "dependencies": {
     "concurrently": "^8.2.2"
