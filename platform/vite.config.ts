@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import federation from "@originjs/vite-plugin-federation";
+import { resolve } from 'path';
 
 const deps = require("./package.json").dependencies;
 
@@ -45,6 +46,22 @@ export default defineConfig({
     modulePreload: false,
     target: 'esnext',
     minify: false,
-    cssCodeSplit: false
-  }
+    cssCodeSplit: false,
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        widget: './src/Widget.tsx',
+      },
+      output: {
+        entryFileNames: (assetInfo) => {
+          return assetInfo.name === 'widget' ?    'assets/js/[name].js':'assets/[name].js' ;
+        },
+      },
+    },
+  },
+  experimental: {
+    renderBuiltUrl(filename: string) {
+      return "http://localhost:4173/" + filename;
+    },
+  },
 })
